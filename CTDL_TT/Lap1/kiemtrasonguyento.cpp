@@ -1,35 +1,19 @@
-#include <iostream>
- 
+#include <bits/stdc++.h>
 using namespace std;
- 
-bool kiem_tra_so_nguyen_to(int x) {
-  if (x <= 1) {
-    return false;
-  } else if (x <= 3) {
-    return true;
-  } else if (x % 2 == 0 || x % 3 == 0) {
-    return false;
-  }
- 
-  int i = 5;
-  while (i * i <= x) {
-    if (x % i == 0 || x % (i + 2) == 0) {
-      return false;
+int n;
+int main()
+{
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    cin>>n;
+    int_fast64_t a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
     }
-    i += 6;
-  }
-  return true;
-}
- 
-int main() {
-  int x;
-  cin >> x;
- 
-  if (kiem_tra_so_nguyen_to(x)) {
-    cout << "co";
-  } else {
-    cout << "khong";
-  }
- 
-  return 0;
+    for(int i=0;i<n;i++)
+    {
+        cout<<a[i]<<" ";
+    }
+    return 0 ; 
 }
