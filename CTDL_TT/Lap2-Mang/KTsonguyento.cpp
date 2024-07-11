@@ -12,7 +12,6 @@ bool isPrime(int x) {
     return true;
 }
 
-
 int main () {
     int x ; 
     cin >> x ; 
