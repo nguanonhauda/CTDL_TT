@@ -55,17 +55,13 @@ public:
 int main() {
     int n, k, x;
     cin >> n >> k >> x;
-
     Linkedlist list;
-
     for (int i = 0; i < n; i++) {
         int gia_tri;
         cin >> gia_tri;
         list.noi_them(gia_tri);
     }
-
     list.chen(k, x);
     list.printList();
-
     return 0;
 }
