@@ -1,84 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
-    int data;
-    struct Node *next;
+struct Stack {
+    int *data;
+    int top;
+    int capacity;
 };
 
-struct Linkedlist {
-    struct Node *head;
-    struct Node *tail;
-    int size;
-};
 
-struct queue {
-    struct Linkedlist ll;
-};
-
-void enqueue(struct queue *q, int value) {
-    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
-    newNode->data = value;
-    newNode->next = NULL;
-    if (q->ll.size == 0) {
-        q->ll.head = newNode;
-        q->ll.tail = newNode;
-    } else {
-        q->ll.tail->next = newNode;
-        q->ll.tail = newNode;
-    }
-    q->ll.size++;
+void initStack(struct Stack *s, int capacity) {
+    s->capacity = capacity;
+    s->top = -1;
+    s->data = (int *)malloc(capacity * sizeof(int));
 }
 
-struct Node *dequeue(struct queue *q) {
-    struct Node *temp;
-    if (q->ll.head != NULL) {
-        temp = q->ll.head;
-        q->ll.head = q->ll.head->next;
-        if (q->ll.head == NULL) {
-            q->ll.tail = NULL;
-        }
-        q->ll.size--;
-        return temp;
-    } else {
-        return NULL;
+void push(struct Stack *s, int value) {
+    if (s->top < s->capacity - 1) {
+        s->data[++(s->top)] = value;
     }
 }
 
-void inDanhSach(struct Node *head) {
-    struct Node *cur = head;
-    while (cur != NULL) {
-        printf("%d ", cur->data);
-        cur = cur->next;
+int pop(struct Stack *s) {
+    if (s->top >= 0) {
+        return s->data[(s->top)--];
     }
-    printf("\n");
+    return -1;
+}
+
+void freeStack(struct Stack *s) {
+    free(s->data);
 }
 
 int main() {
-    struct queue q;
-    q.ll.head = NULL;
-    q.ll.tail = NULL;
-    q.ll.size = 0;
-
     int n, m;
     scanf("%d %d", &n, &m);
+
+    struct Stack stack;
+    initStack(&stack, n);
 
     for (int i = 0; i < n; i++) {
         int value;
         scanf("%d", &value);
-        enqueue(&q, value);
+        push(&stack, value);
     }
 
     for (int i = 0; i < m; i++) {
-        struct Node *temp = dequeue(&q);
-        free(temp);
+        pop(&stack);
     }
 
-    inDanhSach(q.ll.head);
-    while (q.ll.size > 0) {
-        struct Node *temp = dequeue(&q);
-        free(temp);
+    for (int i = 0; i <= stack.top; i++) {
+        printf("%d ", stack.data[i]);
     }
+    printf("\n");
+
+    freeStack(&stack);
 
     return 0;
 }
