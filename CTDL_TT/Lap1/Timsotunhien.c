@@ -1,10 +1,9 @@
+#include <stdio.h>
 
-#include <iostream>
- 
 int main() {
     long long n1, n2;
-    std::cin >> n1 >> n2;
- 
+    scanf("%lld %lld", &n1, &n2);
+
     int count = 0;
     long long results[1000];
     for (long long i = 0; i <= 1000000; i++) {
@@ -13,16 +12,16 @@ int main() {
             results[count++] = i;
         }
     }
- 
+
     if (count == 0) {
-        std::cout << "vo nghiem\n";
+        printf("vo nghiem\n");
     } else {
-        std::cout << count << "\n";
+        printf("%d\n", count);
         for (int i = 0; i < count; i++) {
-            std::cout << results[i] << " ";
+            printf("%lld ", results[i]);
         }
-        std::cout << "\n";
+        printf("\n");
     }
- 
+
     return 0;
 }

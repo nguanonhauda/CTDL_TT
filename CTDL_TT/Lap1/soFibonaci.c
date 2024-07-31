@@ -1,6 +1,5 @@
-#include <iostream>
-using namespace std;
- 
+#include <stdio.h>
+
 int fibonacci(int n) {
     if (n == 1 || n == 2) {
         return 1;
@@ -13,10 +12,10 @@ int fibonacci(int n) {
     }
     return fib;
 }
- 
+
 int main() {
     int n;
-    cin >> n;
-    cout << fibonacci(n) << endl;
+    scanf("%d", &n);
+    printf("%d\n", fibonacci(n));
     return 0;
 }

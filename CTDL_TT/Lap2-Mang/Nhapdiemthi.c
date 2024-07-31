@@ -1,15 +1,15 @@
-#include <iostream>
-using namespace std;
+#include <stdio.h>
+#include <stdlib.h>
 
 int main() {
     int n, MSSV, D;
-    cin >> n >> MSSV >> D;
+    scanf("%d %d %d", &n, &MSSV, &D);
 
-    int* msv = new int[n + 1];
-    int* diem = new int[n + 1];
+    int* msv = (int*)malloc((n + 1) * sizeof(int));
+    int* diem = (int*)malloc((n + 1) * sizeof(int));
 
     for (int i = 0; i < n; i++) {
-        cin >> msv[i] >> diem[i];
+        scanf("%d %d", &msv[i], &diem[i]);
     }
 
     int pos = 0;
@@ -22,18 +22,15 @@ int main() {
         diem[i] = diem[i - 1];
     }
 
-   
     msv[pos] = MSSV;
     diem[pos] = D;
 
-  
     for (int i = 0; i <= n; i++) {
-        cout << msv[i] << " " << diem[i] << endl;
+        printf("%d %d\n", msv[i], diem[i]);
     }
 
-   
-    delete[] msv;
-    delete[] diem;
+    free(msv);
+    free(diem);
 
     return 0;
 }
